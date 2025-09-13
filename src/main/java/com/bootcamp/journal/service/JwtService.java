@@ -1,6 +1,6 @@
 package com.bootcamp.journal.service;
 
-import com.bootcamp.journal.dao.User;
+import com.bootcamp.journal.model.User;
 
 public interface JwtService {
     String extractUserName(String token);

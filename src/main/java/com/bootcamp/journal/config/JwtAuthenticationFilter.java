@@ -1,6 +1,6 @@
 package com.bootcamp.journal.config;
 
-import com.bootcamp.journal.dao.User;
+import com.bootcamp.journal.model.User;
 import com.bootcamp.journal.service.JwtService;
 import com.bootcamp.journal.service.UserService;
 import jakarta.servlet.FilterChain;

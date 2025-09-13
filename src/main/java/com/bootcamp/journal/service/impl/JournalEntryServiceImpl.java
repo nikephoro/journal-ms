@@ -1,7 +1,7 @@
 package com.bootcamp.journal.service.impl;
 
-import com.bootcamp.journal.dao.JournalEntry;
-import com.bootcamp.journal.dao.User;
+import com.bootcamp.journal.model.JournalEntry;
+import com.bootcamp.journal.model.User;
 import com.bootcamp.journal.dto.CreateEntryRequest;
 import com.bootcamp.journal.dto.JournalEntryResponseDto;
 import com.bootcamp.journal.repository.JournalEntryRepository;

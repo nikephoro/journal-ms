@@ -1,4 +1,4 @@
-package com.bootcamp.journal.dao;
+package com.bootcamp.journal.model;
 
 import jakarta.persistence.*;
 import lombok.*;

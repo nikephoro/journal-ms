@@ -1,7 +1,7 @@
 package com.bootcamp.journal.service.impl;
 
-import com.bootcamp.journal.dao.Role;
-import com.bootcamp.journal.dao.User;
+import com.bootcamp.journal.model.Role;
+import com.bootcamp.journal.model.User;
 import com.bootcamp.journal.dto.AuthRequestDto;
 import com.bootcamp.journal.dto.AuthResponseDto;
 import com.bootcamp.journal.dto.UserDto;

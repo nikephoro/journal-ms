@@ -1,6 +1,6 @@
 package com.bootcamp.journal.repository;
 
-import com.bootcamp.journal.dao.User;
+import com.bootcamp.journal.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

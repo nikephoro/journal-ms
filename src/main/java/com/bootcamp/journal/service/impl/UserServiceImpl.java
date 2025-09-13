@@ -1,6 +1,6 @@
 package com.bootcamp.journal.service.impl;
 
-import com.bootcamp.journal.dao.User;
+import com.bootcamp.journal.model.User;
 import com.bootcamp.journal.dto.UserDto;
 import com.bootcamp.journal.repository.UserRepository;
 import com.bootcamp.journal.service.UserService;
