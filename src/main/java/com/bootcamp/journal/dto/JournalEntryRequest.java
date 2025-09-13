@@ -3,14 +3,14 @@ package com.bootcamp.journal.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public class CreateEntryRequest {
+public class JournalEntryRequest {
     @NotBlank(message = "Content is required")
     @Size(max = 10000, message = "Content cannot exceed 10000 characters")
     private String content;
 
-    public CreateEntryRequest() {}
+    public JournalEntryRequest() {}
 
-    public CreateEntryRequest(String content) {
+    public JournalEntryRequest(String content) {
         this.content = content;
     }
 

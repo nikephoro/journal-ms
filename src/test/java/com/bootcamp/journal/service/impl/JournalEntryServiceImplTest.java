@@ -2,7 +2,7 @@ package com.bootcamp.journal.service.impl;
 
 import com.bootcamp.journal.model.JournalEntry;
 import com.bootcamp.journal.model.User;
-import com.bootcamp.journal.dto.CreateEntryRequest;
+import com.bootcamp.journal.dto.JournalEntryRequest;
 import com.bootcamp.journal.dto.JournalEntryResponseDto;
 import com.bootcamp.journal.repository.JournalEntryRepository;
 import com.bootcamp.journal.repository.UserRepository;
@@ -92,7 +92,7 @@ class JournalEntryServiceImplTest {
         mockUser.setId(1);
         mockUser.setUsername(username);
 
-        CreateEntryRequest request = new CreateEntryRequest();
+        JournalEntryRequest request = new JournalEntryRequest();
         request.setContent("New Entry");
 
         JournalEntry mockEntry = new JournalEntry();
@@ -113,7 +113,7 @@ class JournalEntryServiceImplTest {
     @Test
     void createEntry_throwsException_whenUserDoesNotExist() {
         String username = "nonexistentUser";
-        CreateEntryRequest request = new CreateEntryRequest();
+        JournalEntryRequest request = new JournalEntryRequest();
         request.setContent("New Entry");
 
         when(userRepository.findByUsername(username)).thenReturn(Optional.empty());

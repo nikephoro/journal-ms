@@ -1,6 +1,6 @@
 package com.bootcamp.journal.controller;
 
-import com.bootcamp.journal.dto.CreateEntryRequest;
+import com.bootcamp.journal.dto.JournalEntryRequest;
 import com.bootcamp.journal.dto.JournalEntryResponseDto;
 import com.bootcamp.journal.service.JournalEntryService;
 import jakarta.validation.Valid;
@@ -21,7 +21,7 @@ public class JournalEntryController {
     private final JournalEntryService journalEntryService;
 
     @PostMapping("/entries")
-    public ResponseEntity<JournalEntryResponseDto> createEntry(@Valid @RequestBody CreateEntryRequest request) {
+    public ResponseEntity<JournalEntryResponseDto> createEntry(@Valid @RequestBody JournalEntryRequest request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         JournalEntryResponseDto entry = journalEntryService.createEntry(request, username);
@@ -35,5 +35,20 @@ public class JournalEntryController {
         List<JournalEntryResponseDto> journalEntryResponseDtoList = journalEntryService.findAllJournalEntriesByUsername(username);
 
         return ResponseEntity.ok(journalEntryResponseDtoList);
+    }
+    @PutMapping("/entries/{id}")
+    public ResponseEntity<JournalEntryResponseDto> updateEntry(@PathVariable String id, @RequestBody JournalEntryRequest request) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        JournalEntryResponseDto updatedEntry = journalEntryService
+                .updateJournalEntry(id, request,username);
+        return ResponseEntity.ok(updatedEntry);
+    }
+
+    @DeleteMapping("/entries/{id}")
+    public ResponseEntity<Void> deleteEntry(@PathVariable String id) {
+
+        journalEntryService.deleteJournalEntryById(id);
+        return ResponseEntity.noContent().build();
     }
 }

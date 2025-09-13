@@ -2,7 +2,7 @@ package com.bootcamp.journal.service.impl;
 
 import com.bootcamp.journal.model.JournalEntry;
 import com.bootcamp.journal.model.User;
-import com.bootcamp.journal.dto.CreateEntryRequest;
+import com.bootcamp.journal.dto.JournalEntryRequest;
 import com.bootcamp.journal.dto.JournalEntryResponseDto;
 import com.bootcamp.journal.repository.JournalEntryRepository;
 import com.bootcamp.journal.repository.UserRepository;
@@ -60,15 +60,15 @@ public class JournalEntryServiceImpl implements JournalEntryService {
      * @throws RuntimeException if the user is not found
      */
     @Override
-    public JournalEntryResponseDto createEntry(CreateEntryRequest request, String username) {
+    public JournalEntryResponseDto createEntry(JournalEntryRequest request, String username) {
         Optional<User> user = userRepository.findByUsername(username);
 
         if (user.isPresent()) {
-            JournalEntry journalEntry = JournalEntry
-                    .builder()
-                    .user(user.get())
-                    .content(request.getContent())
-                    .build();
+            JournalEntry journalEntry =  new JournalEntry();
+
+            journalEntry.setUser(user.get());
+            journalEntry.setContent(request.getContent());
+
             JournalEntry savedEntry = journalEntryRepository.save(journalEntry);
             return JournalEntryResponseDto
                     .builder()
@@ -80,6 +80,36 @@ public class JournalEntryServiceImpl implements JournalEntryService {
         } else {
             throw new RuntimeException(); // Throw an exception if the user is not found
         }
+    }
+
+    @Override
+    public JournalEntryResponseDto updateJournalEntry(String id, JournalEntryRequest request, String username) {
+
+        Optional<User> user = userRepository.findByUsername(username);
+
+        if (user.isPresent()) {
+
+            JournalEntry journalEntry = new JournalEntry();
+            journalEntry.setId(Integer.valueOf(id));
+            journalEntry.setUser(user.get());
+            journalEntry.setContent(request.getContent());
+            JournalEntry savedEntry = journalEntryRepository.save(journalEntry);
+
+            return JournalEntryResponseDto
+                    .builder()
+                    .content(savedEntry.getContent())
+                    .createdAt(savedEntry.getCreatedAt())
+                    .userId(savedEntry.getId())
+                    .id(savedEntry.getId())
+                    .build();
+        } else {
+            throw new RuntimeException(); // Throw an exception if the user is not found
+        }
+    }
+
+    @Override
+    public void deleteJournalEntryById(String id) {
+        journalEntryRepository.deleteById(Integer.valueOf(id));
     }
 
     /**
@@ -96,4 +126,5 @@ public class JournalEntryServiceImpl implements JournalEntryService {
                 .content(entry.getContent())
                 .build();
     }
+
 }
