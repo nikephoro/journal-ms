@@ -42,13 +42,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(PathRequest.toH2Console()).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/v1/auth/**")).permitAll()
                         .anyRequest().authenticated()
                 )
-
-                // Allow H2 console to load in a frame (fixes Firefox “embedded” warning)
-                .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
 
                 // Keep your stateless sessions + JWT filter & auth provider
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
