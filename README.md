@@ -57,6 +57,8 @@ JWT token configuration is managed through the `application-dev.yml` file. The s
 
 - `POST /api/v1/journal/entries` - Create a new journal entry
 - `GET /api/v1/journal/entries` - Retrieve all journal entries for authenticated user
+- `PUT /api/v1/journal/entries/{id}` - Update an existing journal entry
+- `DELETE /api/v1/journal/entries/{id}` - Delete a journal entry
 
 ## Documentation
 
@@ -88,4 +90,3 @@ Run tests with:
 ```bash
 mvn test
 ```
-
